@@ -1,0 +1,13 @@
+# Fichiers Python à ignorer
+__pycache__/
+*.pyc
+
+# Fichiers de config/env
+.env
+
+# Fichiers EDI de test ou sensibles
+*.edi
+*.EDIFACT
+*.edi.txt
+*.edi.json
+*.edi.xml
