@@ -15,14 +15,12 @@ class BGMVerifier:
         for idx, line in enumerate(lines):
             if not line.startswith("BGM"):
                 continue
-
-            if self.est_ligne_bgm_valide(line):
-                if self.est_type_document_valide(line):
-                    self.highlight_line(text_widget, idx, "correct")
-
+            if self.est_type_document_valide(line):
                 self.highlight_line(text_widget, idx, "correct")
             else:
                 self.highlight_line(text_widget, idx, "erreur")
+
+                
 
     def est_ligne_bgm_valide(self, line):
         #verifier la longeur de la ligne
@@ -40,7 +38,7 @@ class BGMVerifier:
         return self.est_type_document_valide(type_document)
 
     def est_type_document_valide(self, type_document):      
-        return type_document not in self.VALID_DOCUMENT_TYPES
+        return type_document in self.VALID_DOCUMENT_TYPES
 
     #################################################################################
     #ajouter une balise de couleur pour les lignes correctes et incorrectes

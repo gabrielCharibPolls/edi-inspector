@@ -97,6 +97,8 @@ class EDIInspectorApp:
                 lignes = f.readlines()
                 self.texte.delete("1.0", tk.END)  # vider le widget texte
                 self.texte.insert(tk.END, ''.join(lignes))  # insérer le contenu
+                ## Appel de la méthode de vérification a chaque ligne 
+                
                 self.bgm_verifier.verifier_bgm(lignes, self.texte)
                 self.texte.tag_bind("erreur", "<Enter>", lambda event: self.tooltip_handler.show_tooltip(event, "Erreur détectée"))
 
