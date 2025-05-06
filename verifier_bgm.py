@@ -11,6 +11,14 @@ class BGMVerifier:
 ###############################################################
     VALID_DOCUMENT_TYPES = {380, 351, 384}
 
+
+
+    def verifier_ligne(self, line, idx, text_widget):
+        if self.est_ligne_bgm_valide(line):
+            self.highlight_line(text_widget, idx, "correct")
+        else:
+            self.highlight_line(text_widget, idx, "erreur")
+
     def verifier_bgm(self, lines, text_widget):
         for idx, line in enumerate(lines):
             if not line.startswith("BGM"):

@@ -1,8 +1,10 @@
 # main.py
 import tkinter as tk
 from tkinter import filedialog,ttk, messagebox
-from verifier_bgm import BGMVerifier
+from controller import EDIController
 from tooltip import TooltipHandler
+
+
 
 class EDIInspectorApp:
     def __init__(self):
@@ -13,7 +15,7 @@ class EDIInspectorApp:
         ############################################################
         self.fenetre.title("EDI Inspector")
 
-        self.bgm_verifier = BGMVerifier()
+        self.edi_controller = EDIController()
         self.tooltip_handler = TooltipHandler(self.fenetre)
 
 
@@ -98,9 +100,11 @@ class EDIInspectorApp:
                 self.texte.delete("1.0", tk.END)  # vider le widget texte
                 self.texte.insert(tk.END, ''.join(lignes))  # insérer le contenu
                 ## Appel de la méthode de vérification a chaque ligne 
-                
-                self.bgm_verifier.verifier_bgm(lignes, self.texte)
+                #appel controller pour verifier les lignes
+                #self.edi_controller.verifier_lignes(lignes, self.texte)
                 self.texte.tag_bind("erreur", "<Enter>", lambda event: self.tooltip_handler.show_tooltip(event, "Erreur détectée"))
+                #print("Segment type contrôleur dispo :", hasattr(self, "edi_controller"))  # <- debug
+                self.edi_controller.verifier_lignes(lignes, self.texte)
 
 if __name__ == "__main__":
     app = EDIInspectorApp()
