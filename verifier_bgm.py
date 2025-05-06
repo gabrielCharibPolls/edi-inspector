@@ -15,7 +15,7 @@ class BGMVerifier:
         for idx, line in enumerate(lines):
             if not line.startswith("BGM"):
                 continue
-            if self.est_type_document_valide(line):
+            if self.est_ligne_bgm_valide(line):
                 self.highlight_line(text_widget, idx, "correct")
             else:
                 self.highlight_line(text_widget, idx, "erreur")
@@ -32,12 +32,19 @@ class BGMVerifier:
         try:
             type_document_str = parts[1].split(':')[0]
             type_document = int(type_document_str)
+            # Debug print removed to avoid redundancy
         except (IndexError, ValueError):
             return False
 
-        return self.est_type_document_valide(type_document)
+        if type_document in self.VALID_DOCUMENT_TYPES:
+            print(f"Type de document valide: {type_document}")
+            return True
+        else:
+            print(f"Type de document invalide: {type_document}")
+            return False
 
-    def est_type_document_valide(self, type_document):      
+    def est_type_document_valide(self, type_document): 
+        print(f"Type de document: {type_document}")     
         return type_document in self.VALID_DOCUMENT_TYPES
 
     #################################################################################
