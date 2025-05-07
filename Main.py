@@ -91,6 +91,7 @@ class EDIInspectorApp:
             with open(fichier, "w", encoding="utf-8") as f:
                 contenu = self.texte.get("1.0", tk.END).strip()
                 f.write(contenu)
+        
 
     def ouvrir_fichier(self):
         fichier = filedialog.askopenfilename(title="Choisir un fichier EDI")
